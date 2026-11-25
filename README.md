@@ -4,18 +4,30 @@
 
 ## 在线演示
 
-可操作的在线演示部署在 `XXX`。打开演示页面后，可以查看二维地图、手动控制机器人，并观察操作后的状态变化。
+可操作的在线演示由培训工作组统一部署，演示域名公布后，我们将访问地址补充在此处。打开演示页面后，可以查看二维地图、手动控制机器人，并观察操作后的状态变化。
 
-本项目还展示了 `XXX`。
+本项目还展示了自动巡检调度、虚拟传感器探测，以及 CI 与 Docker 镜像的完整交付流程。
+
+## 快速开始
+
+公开镜像（任何人可拉取）：
+
+```bash
+docker pull ghcr.io/gujianxiaozi1234/patrol-sim:latest
+docker run -d --name patrol -p 8000:8000 ghcr.io/gujianxiaozi1234/patrol-sim:latest
+```
+
+打开 http://localhost:8000 即可查看二维地图并手动控制机器人。完整步骤见[运行说明](docs/04_运行与结业提交.md)。
+
 
 ## 技术选型
 
-- 前端使用 `XXX` 开发页面和操作界面。
-- 后端使用 `XXX` 提供 API。
-- 二维地图和机器人使用 `XXX` 绘制。
-- 仿真逻辑使用 `XXX` 实现。
-- CI 使用 `XXX` 运行自动检查。
-- Docker 部署使用 `XXX`。
+- 前端使用 `Vue 3 + Vite` 开发页面和操作界面。
+- 后端使用 `FastAPI`（Python 3.12，Uvicorn 运行）提供 API。
+- 二维地图和机器人使用 `SVG`（Vue 模板渲染网格与矩形）绘制。
+- 仿真逻辑使用 `Python` 实现（BFS 寻路 + 传感器探测模型）。
+- CI 使用 `GitHub Actions` 运行自动检查（后端 pytest + 前端构建）。
+- Docker 部署使用多阶段构建（node:24-alpine 构建前端，python:3.12-slim 运行后端）。
 
 ## 项目文档
 

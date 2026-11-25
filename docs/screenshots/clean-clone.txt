@@ -1,0 +1,24 @@
+$ git clone https://github.com/zhuyuhan-nb/patrol-sim.git /tmp/patrol-clean
+Cloning into '/tmp/patrol-clean'...
+remote: Enumerating objects: 248, done.
+remote: Total 248 (delta 51), reused 55 (delta 50), pack-reused 177 (from 1)
+Receiving objects: 100% (248/248), 104.59 KiB | 241.00 KiB/s, done.
+Resolving deltas: 100% (102/102), done.
+
+$ git -C /tmp/patrol-clean log --oneline -1
+2e980e4 Merge pull request #14 from GuJianXiaoZi1234/patch-1
+
+$ ls /tmp/patrol-clean
+AGENTS.md
+Dockerfile
+LICENSE
+README.md
+SETUP.md
+backend
+docker-compose.yml
+docs
+frontend
+
+$ grep -c XXX /tmp/patrol-clean/docs/04_运行与结业提交.md /tmp/patrol-clean/README.md
+/tmp/patrol-clean/docs/04_运行与结业提交.md:0
+/tmp/patrol-clean/README.md:0
