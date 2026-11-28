@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>智能巡检机器人 · 二维仿真系统</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/api.js" defer></script>
+    <script src="/js/view.js" defer></script>
+    <script src="/js/control.js" defer></script>
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <h1>智能巡检机器人二维仿真系统</h1>
+        <p>网格地图 · 手动控制 · 路径规划 · 虚拟传感器 · 自动巡检</p>
+      </header>
+
+      <div class="workspace">
+        <section class="map-section" aria-labelledby="map-title">
+          <div class="section-heading">
+            <h2 id="map-title">巡检地图</h2>
+            <span id="map-size">等待加载</span>
+          </div>
+          <div class="legend" aria-label="地图图例">
+            <span><i class="legend-cell ground"></i>空地</span>
+            <span><i class="legend-cell obstacle">障</i>障碍物</span>
+            <span><i class="legend-cell robot">机</i>机器人</span>
+            <span><i class="legend-cell checkpoint">点</i>检查点</span>
+            <span><i class="legend-cell path">路</i>规划路径</span>
+          </div>
+          <p id="map-placeholder" class="placeholder">正在读取地图…</p>
+          <div id="map-board" class="map-board" hidden>
+            <div class="map-body">
+              <div id="map" class="map" role="grid" aria-label="巡检地图"></div>
+            </div>
+          </div>
+          <p class="map-note">左上角为 (0, 0)，向右 x 增大，向下 y 增大。默认点击空地查询规划路径；开启「编辑障碍」后点击格子可放置或移除障碍。</p>
+        </section>
+
+        <aside class="controls" aria-labelledby="control-title">
+          <h2 id="control-title">控制台</h2>
+
+          <dl class="position">
+            <dt>机器人坐标</dt>
+            <dd id="coordinates">尚未读取</dd>
+            <dt>当前朝向</dt>
+            <dd id="direction">尚未读取</dd>
+            <dt>运行状态</dt>
+            <dd id="robot-status">尚未读取</dd>
+          </dl>
+
+          <div class="sensor-panel">
+            <h3>虚拟传感器（前方）</h3>
+            <p id="sensor-reading">尚未读取</p>
+          </div>
+
+          <div class="stats-panel" aria-label="运行统计">
+            <h3>运行统计</h3>
+            <div class="stats-grid">
+              <div><dt>移动步数</dt><dd id="stat-steps">0</dd></div>
+              <div><dt>路径长度</dt><dd id="stat-path">0</dd></div>
+              <div><dt>运行耗时</dt><dd id="stat-elapsed">0.0s</dd></div>
+              <div><dt>巡检覆盖率</dt><dd id="stat-coverage">0%</dd></div>
+            </div>
+          </div>
+
+          <div class="direction-pad" aria-label="移动方向">
+            <button type="button" data-direction="up" class="up" aria-label="向上移动一格" disabled>上</button>
+            <button type="button" data-direction="left" class="left" aria-label="向左移动一格" disabled>左</button>
+            <span class="step-label" aria-hidden="true">一格</span>
+            <button type="button" data-direction="right" class="right" aria-label="向右移动一格" disabled>右</button>
+            <button type="button" data-direction="down" class="down" aria-label="向下移动一格" disabled>下</button>
+          </div>
+
+          <div class="actions">
+            <button id="patrol-start" type="button" class="action" disabled>启动自动巡检</button>
+            <button id="patrol-stop" type="button" class="action" disabled>停止巡检</button>
+            <button id="return-home" type="button" class="action" disabled>返航回起点</button>
+            <button id="reset" type="button" class="action" disabled>复位机器人</button>
+          </div>
+
+          <div class="modes">
+            <button id="edit-mode" type="button" class="mode-toggle" aria-pressed="false">编辑障碍</button>
+            <button id="dynamic-mode" type="button" class="mode-toggle" aria-pressed="false">动态障碍</button>
+          </div>
+
+          <p id="patrol-progress" class="patrol-progress" role="status" aria-live="polite">检查点尚未读取</p>
+
+          <div class="feedback">
+            <p id="status" role="status" aria-live="polite" aria-atomic="true">正在读取状态…</p>
+            <button id="reload" type="button" class="reload" disabled>重新读取状态</button>
+          </div>
+        </aside>
+      </div>
+
+      <footer>同一服务中的访问者共享机器人状态；刷新页面保留位置，服务重启后恢复初始状态。</footer>
+      <noscript>请启用 JavaScript，以读取地图和控制机器人。</noscript>
+    </main>
+  </body>
+</html>
