@@ -1,0 +1,129 @@
+@import '@lark-apaas/client-toolkit/lib/index.css';
+@import "tw-animate-css";
+@import "./tailwind-theme.css";
+@import "./typography.css";
+
+@config "../../tailwind.config.ts";
+
+/* ── 巡检仿真马里奥主题令牌 ─────────────────────────────
+   面板、页面和 Canvas 统一引用这套颜色，保持整体协调。 */
+:root {
+  --sim-bg: #5c94fc;
+  --sim-panel: #fffdf7;
+  --sim-panel-2: #fff7ed;
+  --sim-border: #e7c9a9;
+  --sim-text: #7c2d12;
+  --sim-muted: #9a6a33;
+  --sim-primary: #0065bd;
+  --sim-primary-strong: #1d4ed8;
+  --sim-success: #16a34a;
+  --sim-warning: #e8871a;
+  --sim-danger: #e52521;
+  --sim-start: #166534;
+  --sim-target: #991b1b;
+  --sim-coin: #fbd000;
+  --sim-coin-soft: #fde047;
+  --sim-sky-top: #5c94fc;
+  --sim-sky-bottom: #7ec0ee;
+  --sim-grass: #4caf50;
+  --sim-grass-light: #98d46e;
+  --sim-dirt: #8fb06a;
+  --sim-dirt-dark: #6e9148;
+  --sim-brown: #7c2d12;
+  --sim-brown-shadow: #6b4220;
+  --sim-status-accent: #e8871a;
+  --sim-control-accent: #0065bd;
+  --sim-path-accent: #16a34a;
+}
+
+html,
+body {
+  background-color: var(--sim-sky-top);
+}
+
+/* 右侧控制列使用细滚动条，避免在亮色卡片上显得突兀 */
+.sim-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sim-dirt-dark) transparent;
+}
+
+.sim-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sim-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: var(--sim-dirt-dark);
+}
+
+.sim-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── 轻量场景动效 ───────────────────────────────────── */
+@keyframes sim-cloud-drift {
+  from {
+    transform: translateX(-10px);
+  }
+  to {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes sim-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes sim-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sim-coin-pop {
+  0% {
+    transform: scale(0.82);
+  }
+  55% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.sim-cloud-drift {
+  animation: sim-cloud-drift 26s ease-in-out infinite alternate;
+}
+
+.sim-float {
+  animation: sim-float 4s ease-in-out infinite;
+}
+
+.sim-rise {
+  animation: sim-rise 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.sim-coin-pop {
+  animation: sim-coin-pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sim-cloud-drift,
+  .sim-float,
+  .sim-rise,
+  .sim-coin-pop {
+    animation: none !important;
+  }
+}

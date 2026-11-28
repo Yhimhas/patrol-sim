@@ -1,0 +1,25 @@
+# 版本控制
+.git/
+.gitignore
+
+# 日志与临时文件
+*.log
+logs/
+.spark/
+*.tsbuildinfo
+
+# 源码与中间脚本（运行镜像只需要 dist 产物 + 生产依赖）
+client/
+server/
+shared/
+scripts/
+_reference-orig/
+
+# 本地环境文件（容器内通过 ENV 注入）
+.env
+.env.local
+
+# 编辑器/系统文件
+.vscode/
+.idea/
+.DS_Store
